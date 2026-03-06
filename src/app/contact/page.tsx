@@ -186,7 +186,7 @@ const handleSubmit = async (e: React.FormEvent) => {
               className="flex items-center gap-2 p-3 rounded bg-[var(--accent-muted)] border border-[var(--accent)]/30 text-[var(--accent)] text-sm font-mono"
             >
               <CheckCircle size={16} />
-              Message sent! I'll get back to you soon.
+              Thank you for reaching out!. Your message has been received and I’ll get back to you shortly...
             </motion.div>
           )}
 
