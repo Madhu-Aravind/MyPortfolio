@@ -55,7 +55,7 @@ export default function ContactPage() {
             {
               icon: Linkedin,
               label: "LinkedIn",
-              value: "https://www.linkedin.com/in/m-aravind-m230759ee",
+              value: "https://linkedin.com/in/m-aravind-m230759ee",
               href: siteConfig.linkedin,
             },
             {
