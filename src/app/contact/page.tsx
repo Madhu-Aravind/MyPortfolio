@@ -49,13 +49,13 @@ export default function ContactPage() {
             {
               icon: Github,
               label: "GitHub",
-              value: "github.com/alexmercer-dev",
+              value: "https://github.com/Madhu-Aravind",
               href: siteConfig.github,
             },
             {
               icon: Linkedin,
               label: "LinkedIn",
-              value: "linkedin.com/in/alexmercer-dev",
+              value: "https://www.linkedin.com/in/m-aravind-m230759ee",
               href: siteConfig.linkedin,
             },
             {
@@ -119,7 +119,7 @@ export default function ContactPage() {
                 required
                 value={form.name}
                 onChange={handleChange}
-                placeholder="John Doe"
+                placeholder="Madhu Aravind"
                 className={inputClass}
               />
             </div>
@@ -133,7 +133,7 @@ export default function ContactPage() {
                 required
                 value={form.email}
                 onChange={handleChange}
-                placeholder="john@example.com"
+                placeholder="aravind@example.com"
                 className={inputClass}
               />
             </div>
