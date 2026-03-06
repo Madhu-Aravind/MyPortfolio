@@ -16,14 +16,26 @@ export default function ContactPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("sending");
-    // Simulate API call — replace with real endpoint (Formspree, Resend, etc.)
-    await new Promise((r) => setTimeout(r, 1500));
-    setStatus("success");
-    setForm({ name: "", email: "", subject: "", message: "" });
-  };
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setStatus("sending");
+  try {
+    const res = await fetch("https://formspree.io/f/xdawonlv", {
+      // ← paste your Formspree URL here
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+    if (res.ok) {
+      setStatus("success");
+      setForm({ name: "", email: "", subject: "", message: "" });
+    } else {
+      setStatus("error");
+    }
+  } catch {
+    setStatus("error");
+  }
+};
 
   const inputClass =
     "w-full px-4 py-3 rounded bg-[var(--bg-card)] border border-[var(--bg-border)] text-[var(--text-primary)] text-sm font-mono placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent)] transition-colors";
