@@ -8,9 +8,9 @@ import { siteConfig } from "@/lib/data";
 
 const TYPING_STRINGS = [
   "Embedded Systems Engineer",
-  "Firmware Developer",
-  "Linux & RTOS Specialist",
-  "Python Automation Expert",
+  "STM32 Firmware Developer",
+  "RTOS & Bare-Metal Programmer",
+  "Control Systems & IoT Engineer",
 ];
 
 function TypingText() {

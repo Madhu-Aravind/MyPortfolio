@@ -1,10 +1,17 @@
 "use client";
 // src/app/about/page.tsx
 import { motion } from "framer-motion";
-import { MapPin, Calendar, Download } from "lucide-react";
+import { MapPin, Calendar, Download, Award } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SkillBar } from "@/components/ui/SkillBar";
 import { siteConfig, skills, experience, education } from "@/lib/data";
+
+const achievements = [
+  "One-month plant training on Renewable & Non-Renewable Energy at CAPE Institute of Technology",
+  "Completed industrial automation training using PLC and SCADA Systems",
+  "Certificate of appreciation for organizing 'Junkyard Electronics' during Ekarikthin 2018",
+  "Participated in All India Inter NIT Cricket Tournament at NIT-Calicut",
+];
 
 export default function AboutPage() {
   return (
@@ -12,26 +19,28 @@ export default function AboutPage() {
       {/* Bio section */}
       <div className="grid lg:grid-cols-5 gap-16 mb-24">
         <div className="lg:col-span-3">
-          <SectionHeading
-            label="about me"
-            title="Hello, I'm Alex."
-            subtitle=""
-          />
+          <SectionHeading label="about me" title="Hello, I'm Aravind." />
           <div className="space-y-4 text-[var(--text-secondary)] leading-relaxed">
             <p>
-              I'm an Embedded Systems Engineer based in Berlin with 7+ years of experience writing
-              firmware for ARM Cortex-M microcontrollers — primarily STM32 — and building the tooling
-              that surrounds it: CI/CD pipelines, test frameworks, and Linux BSPs.
+              I'm an entry-level Embedded Systems Engineer based in Hyderabad with a strong foundation
+              in ARM Cortex-M based STM32 microcontroller development, peripheral integration, and
+              real-time firmware design.
             </p>
             <p>
-              My work spans from bare-metal register manipulation and RTOS kernel internals to
-              Python-based automated test systems and web dashboards for embedded telemetry. I believe
-              good firmware engineering is inseparable from good software engineering.
+              I hold an M.Tech in Instrumentation and Control Systems from NIT Calicut and a B.Tech
+              in Electrical and Electronics Engineering from NIT Nagaland. My academic background
+              bridges control theory and embedded hardware — giving me a unique perspective on
+              hardware-software co-design.
             </p>
             <p>
-              When I'm not debugging a DMA interrupt or writing pytest fixtures for hardware, I'm
-              exploring Rust for embedded, contributing to open-source tooling, or writing about
-              firmware patterns on my blog.
+              During my internship at Tata Elxsi, I built cross-platform test automation frameworks
+              for VS Code extensions and contributed to Angular-based front-end development. I'm
+              currently deepening my embedded expertise at Kernel Masters, Hyderabad — working hands-on
+              with STM32 bare-metal programming, RTOS, and communication protocols.
+            </p>
+            <p>
+              I'm passionate about building reliable, efficient embedded solutions — from register-level
+              GPIO configuration to Wi-Fi integrated IoT systems.
             </p>
           </div>
 
@@ -42,7 +51,7 @@ export default function AboutPage() {
             </div>
             <div className="flex items-center gap-2 text-sm text-[var(--text-muted)] font-mono">
               <Calendar size={14} className="text-[var(--accent)]" />
-              7+ years experience
+              M.Tech NIT Calicut 2025
             </div>
           </div>
 
@@ -67,7 +76,7 @@ export default function AboutPage() {
 
       {/* Experience */}
       <div className="mb-24">
-        <SectionHeading label="career" title="Work Experience" />
+        <SectionHeading label="career" title="Experience & Training" />
         <div className="space-y-1">
           {experience.map((job, i) => (
             <motion.div
@@ -78,19 +87,12 @@ export default function AboutPage() {
               transition={{ delay: i * 0.1 }}
               className="relative pl-6 pb-10 last:pb-0"
             >
-              {/* Timeline line */}
               <div className="absolute left-0 top-1.5 bottom-0 w-px bg-[var(--bg-border)]" />
-              <div
-                className="absolute left-[-3px] top-1.5 w-1.5 h-1.5 rounded-full"
-                style={{ background: "var(--accent)" }}
-              />
-
+              <div className="absolute left-[-3px] top-1.5 w-1.5 h-1.5 rounded-full" style={{ background: "var(--accent)" }} />
               <div className="bg-[var(--bg-card)] border border-[var(--bg-border)] rounded-lg p-6 terminal-border">
                 <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
                   <div>
-                    <h3 className="font-display font-semibold text-[var(--text-primary)]">
-                      {job.role}
-                    </h3>
+                    <h3 className="font-display font-semibold text-[var(--text-primary)]">{job.role}</h3>
                     <p className="text-[var(--accent)] text-sm font-mono">{job.company}</p>
                   </div>
                   <div className="text-right">
@@ -113,7 +115,7 @@ export default function AboutPage() {
       </div>
 
       {/* Education */}
-      <div>
+      <div className="mb-24">
         <SectionHeading label="education" title="Academic Background" />
         <div className="grid md:grid-cols-2 gap-4">
           {education.map((edu, i) => (
@@ -128,6 +130,26 @@ export default function AboutPage() {
               <p className="font-display font-semibold text-[var(--text-primary)] mb-1">{edu.degree}</p>
               <p className="text-[var(--accent)] text-sm font-mono">{edu.school}</p>
               <p className="text-xs font-mono text-[var(--text-muted)] mt-1">{edu.period}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Achievements */}
+      <div>
+        <SectionHeading label="achievements" title="Certifications & Achievements" />
+        <div className="grid md:grid-cols-2 gap-4">
+          {achievements.map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="flex gap-3 p-4 rounded-lg border border-[var(--bg-border)] bg-[var(--bg-card)]"
+            >
+              <Award size={16} className="text-[var(--accent)] shrink-0 mt-0.5" />
+              <p className="text-sm text-[var(--text-secondary)]">{item}</p>
             </motion.div>
           ))}
         </div>
