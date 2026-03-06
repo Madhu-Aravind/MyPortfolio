@@ -5,7 +5,7 @@ export const siteConfig = {
   name: "M Aravind",
   title: "Embedded Systems Engineer",
   tagline: "Entry-level embedded systems engineer passionate about building reliable firmware — from bare-metal STM32 to RTOS and Wi-Fi integrated systems.",
-  email: "madhu.aravind@gmail.com",
+  email: "madhu21898@gmail.com",
   github: "https://github.com/Madhu-Aravind",
   linkedin: "https://www.linkedin.com/in/m-aravind-m230759ee",
   githubUsername: "Madhu-Aravind",
