@@ -4,6 +4,22 @@ import "../styles/globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
+import { GoogleAnalytics } from '@next/third-parties/google';
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body className="noise-bg min-h-screen flex flex-col">
+        <ThemeProvider>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </ThemeProvider>
+        <GoogleAnalytics gaId="G-Z2PSDYVY5N" /> {/* ← paste your ID */}
+      </body>
+    </html>
+  );
+}
 
 export const metadata: Metadata = {
   title: "M Aravind — Embedded Systems Engineer",
