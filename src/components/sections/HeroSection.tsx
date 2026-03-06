@@ -180,7 +180,7 @@ export function HeroSection() {
           </div>
           <div className="space-y-2 text-[var(--text-muted)]">
             <p><span className="text-[var(--accent)]">$</span> whoami</p>
-            <p className="text-[var(--text-primary)]">alex_mercer</p>
+            <p className="text-[var(--text-primary)]">M Aravind</p>
             <p><span className="text-[var(--accent)]">$</span> cat skills.txt</p>
             {["C/C++", "STM32", "FreeRTOS", "Linux", "Python", "CAN/SPI/I2C"].map((s) => (
               <p key={s} className="pl-2 text-[var(--accent)]/70">→ {s}</p>
