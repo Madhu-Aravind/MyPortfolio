@@ -38,7 +38,7 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 font-mono text-sm font-bold">
           <Terminal size={16} className="text-[var(--accent)]" />
-          <span className="text-[var(--accent)]">alex</span>
+          <span className="text-[var(--accent)]">Aravind</span>
           <span className="text-[var(--text-secondary)]">@dev</span>
           <span className="text-[var(--accent)] animate-blink">_</span>
         </Link>
