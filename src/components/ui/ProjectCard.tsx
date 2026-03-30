@@ -1,121 +1,58 @@
 "use client";
-// src/components/ui/ProjectCard.tsx
 import { motion } from "framer-motion";
-import {
-  Github, ExternalLink, Cpu, Activity, GitBranch,
-  Layers, Monitor, Terminal, Star
-} from "lucide-react";
+import { Github, ExternalLink, Cpu, Activity, GitBranch, Layers, Monitor, Terminal, Star } from "lucide-react";
 import { Project } from "@/lib/types";
-import { cn } from "@/lib/utils";
 
-const iconMap: Record<string, React.ElementType> = {
-  cpu: Cpu,
-  activity: Activity,
-  "git-branch": GitBranch,
-  layers: Layers,
-  monitor: Monitor,
-  terminal: Terminal,
+const iconMap: Record<string, React.ElementType> = { cpu:Cpu, activity:Activity, "git-branch":GitBranch, layers:Layers, monitor:Monitor, terminal:Terminal };
+const catColors: Record<string,{bg:string,text:string}> = {
+  Embedded:{bg:"rgba(16,185,129,0.1)",text:"#10b981"},
+  Web:{bg:"rgba(6,182,212,0.1)",text:"#06b6d4"},
+  Automation:{bg:"rgba(99,102,241,0.1)",text:"#6366f1"},
 };
 
-const categoryColors: Record<string, string> = {
-  Embedded: "#00ff88",
-  Web: "#00d4ff",
-  Automation: "#6c63ff",
-};
-
-interface ProjectCardProps {
-  project: Project;
-  index: number;
-}
-
-export function ProjectCard({ project, index }: ProjectCardProps) {
+export function ProjectCard({ project, index }: { project: Project; index: number }) {
   const Icon = iconMap[project.icon] ?? Cpu;
-  const catColor = categoryColors[project.category];
-
+  const cat = catColors[project.category];
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.4, delay: index * 0.08 }}
-      className="card-hover terminal-border rounded-lg bg-[var(--bg-card)] flex flex-col overflow-hidden"
-    >
-      {/* Header strip */}
-      <div
-        className="h-1.5 w-full"
-        style={{ background: `linear-gradient(90deg, ${project.imageColor}, transparent)` }}
-      />
-
-      <div className="p-6 flex flex-col flex-1">
-        {/* Icon + category */}
-        <div className="flex items-center justify-between mb-4">
-          <div
-            className="p-2.5 rounded"
-            style={{ background: `${project.imageColor}18`, color: project.imageColor }}
-          >
-            <Icon size={20} />
-          </div>
-          <div className="flex items-center gap-3">
-            {project.stars !== undefined && (
-              <span className="flex items-center gap-1 text-xs font-mono text-[var(--text-muted)]">
-                <Star size={12} />
-                {project.stars}
-              </span>
-            )}
-            <span
-              className="text-xs font-mono px-2 py-0.5 rounded-full"
-              style={{ color: catColor, background: `${catColor}18` }}
-            >
-              {project.category}
-            </span>
-          </div>
+    <motion.div initial={{opacity:0,y:30}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.4,delay:index*0.08}}
+      className="glass-card p-6 flex flex-col h-full">
+      <div className="h-1 w-16 rounded-full mb-5" style={{background:`linear-gradient(90deg,${project.imageColor},transparent)`}} />
+      <div className="flex items-start justify-between mb-4">
+        <div className="p-2.5 rounded-xl" style={{background:`${project.imageColor}18`,color:project.imageColor}}>
+          <Icon size={18} />
         </div>
-
-        {/* Title */}
-        <h3 className="font-display font-semibold text-lg text-[var(--text-primary)] mb-2">
-          {project.title}
-        </h3>
-
-        {/* Description */}
-        <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-5 flex-1">
-          {project.description}
-        </p>
-
-        {/* Tech stack */}
-        <div className="flex flex-wrap gap-1.5 mb-5">
-          {project.tech.map((t) => (
-            <span
-              key={t}
-              className="text-xs font-mono px-2 py-0.5 rounded bg-[var(--bg-border)] text-[var(--text-muted)]"
-            >
-              {t}
+        <div className="flex items-center gap-2">
+          {project.stars && (
+            <span className="flex items-center gap-1 text-xs text-[var(--text-muted)]" style={{fontFamily:"'JetBrains Mono',monospace"}}>
+              <Star size={11} />{project.stars}
             </span>
-          ))}
-        </div>
-
-        {/* Links */}
-        <div className="flex items-center gap-3 pt-4 border-t border-[var(--bg-border)]">
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={cn("btn-outline text-xs py-1.5 px-3")}
-          >
-            <Github size={13} />
-            Source
-          </a>
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary text-xs py-1.5 px-3"
-            >
-              <ExternalLink size={13} />
-              Live
-            </a>
           )}
+          <span className="text-xs font-semibold px-2.5 py-1 rounded-full" style={{background:cat.bg,color:cat.text}}>
+            {project.category}
+          </span>
         </div>
+      </div>
+
+      <h3 className="font-bold text-[var(--text-primary)] mb-2" style={{fontFamily:"'Outfit',sans-serif",fontSize:"16px"}}>{project.title}</h3>
+      <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-5 flex-1">{project.description}</p>
+
+      <div className="flex flex-wrap gap-1.5 mb-5">
+        {project.tech.map((t)=>(
+          <span key={t} className="skill-pill" style={{fontSize:"11px",padding:"2px 10px"}}>{t}</span>
+        ))}
+      </div>
+
+      <div className="flex items-center gap-2 pt-4 border-t border-[var(--bg-border)]">
+        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer"
+          className="outline-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium">
+          <Github size={12} /> Source
+        </a>
+        {project.liveUrl && (
+          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer"
+            className="glow-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium">
+            <ExternalLink size={12} /> Live
+          </a>
+        )}
       </div>
     </motion.div>
   );
