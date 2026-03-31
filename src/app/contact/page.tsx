@@ -13,13 +13,26 @@ export default function ContactPage() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement|HTMLTextAreaElement>) => setForm({...form,[e.target.name]:e.target.value});
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("sending");
-    await new Promise((r) => setTimeout(r, 1500));
-    setStatus("success");
-    setForm({ name:"", email:"", subject:"", message:"" });
-  };
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setStatus("sending");
+  try {
+    const res = await fetch("https://formspree.io/f/xdawonlv", {
+      // ← paste your Formspree URL here
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+    if (res.ok) {
+      setStatus("success");
+      setForm({ name: "", email: "", subject: "", message: "" });
+    } else {
+      setStatus("error");
+    }
+  } catch {
+    setStatus("error");
+  }
+};
 
   return (
     <div className="max-w-6xl mx-auto px-6 pt-28 pb-24">
